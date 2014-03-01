@@ -21,6 +21,18 @@
       ga('create', 'UA-48391305-1', 'miguelcnf.com');
       ga('send', 'pageview');
     </script>
+    <script type="text/javascript">
+      var disqus_shortname = 'miguelcnfcom'; // required: replace example with your forum shortname
+      var disqus_identifier = 'what-do-you-think-devops-is';
+      var disqus_title = 'what-do-you-think-devops-is';
+      var disqus_url = 'http://miguelcnf.com/2014/02/23/what-do-you-think-devops-is.html';
+
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
   </head>
   <body>
     <div class="container">
@@ -64,6 +76,7 @@
             <p>Also it helps you not to shoot yourself in the foot, which is nice.</p>
             </article>
           </div> <!-- ./blog-post -->
+          <div id="disqus_thread"></div> <!-- disqus -->
         </div> <!-- ./blog-main col -->
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
