@@ -23,9 +23,9 @@
     </script>
     <script type="text/javascript">
       var disqus_shortname = 'miguelcnfcom'; // required: replace example with your forum shortname
-      var disqus_identifier = 'zero-lines-of-code';
-      var disqus_title = 'zero-lines-of-code';
-      var disqus_url = 'http://miguelcnf.com/2014/06/17/zero-lines-of-code.html';
+      var disqus_identifier = 'the-snowflake-mindset';
+      var disqus_title = 'the-snowflake-mindset';
+      var disqus_url = 'http://miguelcnf.com/2014/09/25/the-snowflake-mindset.html';
 
       (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -44,23 +44,22 @@
       <div class="row">
         <div class="col-sm-8 blog-main">
           <div class="blog-post">
-            <article>
-            <h2 class="blog-post-title">Zero lines of code</h2>
-              <p>Those hectic days where you don't get to write a single line of code...</p>
-            <hr>
-            <p>As mainly an ops guy, and even if nowadays (thankfully!) that doesn't mean that you don't write code on your day to day job, I've had my share of days in which you're so strangled in troubleshooting production issues, doing capacity tests, or just trapped in meetings, that you realize that your work day is over and you haven't written a single line of code.</p>
-            <p>While I was on the subway shuffling some <em>Led Zep</em> (the greatest rock band of all times, and I don't care what you say or think about that!), I was thinking of the day I just had and     realized it had been one of those days. I then started to think how bad is this pattern? Even if the stuff you have done all day was <strong>REALLY, REALLY, REALLY</strong> important, what leads to a day     like this and how bad is it for you?</p>
-            <p>I've read something a while back on how the <a href="http://www.site-reliability-engineering.info/2014/04/what-is-site-reliability-engineering.html" target="_blank"><em>Google</em> SRE's defined the time an ops engineer should spend his time</a>. In a nutshell if you spend more then half of your time doing traditional ops stuff and not writing code for a project then you're not doing as well as you should, or the project you're on is likely not particularly good for you.</p>
-            <p>That actually makes a hell of a lot of sense in my head. I mean, of course in a ops role you won't be coding all the time, you'll eventually still have to troubleshoot <em>CRC</em> port issues, unholy <em>GC</em> patterns or analyze <em>TSDB</em> graph spikes that seem to have no rational reasoning in this reality. But if you let yourself get trapped in a non-coding routine you'll eventually loose more then you'll win.</p>
-            <p>Just think of the following:</p>
-            <ul>
-              <li>Coding takes practice - just like riding a bike you won't forget how to code, but you'll loose muscle memory, pattern recognition, general ninjaness, and more.</li>
-              <li>Languages evolve - although the <em>Perl</em> scripts you wrote 10 years ago (oh yeah, Perl baby!) might still work, by now you wouldn't know of things like <em>PSGI</em>, <em>Dancer</em>, etc.</li>
-              <li>Developers speak strange things - how can you really discuss your application with full time developers if they talk about things that you know nothing of?</li>
-              <li>Plain old simple fun - come on, seriously don't tell me you don't enjoy yourself when building or automating something out of nothing?</li>
-            </ul>
-            <p>All of this rant to say that I'm definitely going to work on not getting myself trapped in this kind of days often, and in my humble opinion everyone should do the same.</p>
-            </article>
+          <article>
+            <h2 class="blog-post-title">The Snowflake Mindset</h2>
+              <p>How common it (apparently) is.</p>
+              <hr>
+              <p>More often ahan not an event in the tech world will make everyone rush to patch a library or application due to a security flaw.</p>
+              <p>A couple of months ago we've seen the <a href="http://heartbleed.com/" target="_blank">ssl heartbleed</a> cause havoc around the internet and now we have <a href="http://seclists.org/oss-sec/2014/q3/650" target="_blank">bash's CVE-2014-6271</a> forcing everyone to update their live systems in a rush.</p>
+              <p>As usual this events bring lots of noise to the social networks, well to be honest as with all things tech, it bring <em>tweets</em> to twitter.</p>
+              <p>What surprised me this time was the way I've seen people bragging about how they had patched their systems. Most were showing off one liners executed with the parallel SSH tool of their choice which they had used to update their entire estate:</p>
+              <pre><code>ssh_task 'fix_bash' do command 'apt-get install bash --reinstall' end </code></pre>
+              <pre><code>ansible all -m apt -a 'update_cache=yes name=bash state=latest'</code></pre>
+              <p>Reading some of those all I could think was: <strong>snowflakes</strong>. Not the snowy fluffy ones but as in snowflake servers, the ones that aren't in a known coded state which you can rebuild in one go.</p>
+              <p>If I had to guess I'd say that the rise of tools (really good ones written by really smart people - don't get me wrong here) like ansible, capistrano and blender which allow you to easily remote execute a command across hundreds or thousands of servers in a programmatically way is strictly related with this.</p>
+              <p>I'm guessing a lot of people didn't really fell for this mistake (call it pattern if you feel mistake is too strong) but I'd be willing to bet that strictly related with the easiness of doing this changes a lot of systems were patched the good old way and are now in a snowflake state in which if they had to be re-build they wouldn't be idempotent.</p>
+              <p>Hopefully I'm wrong and all of those folks coded it to their infra/config code but as I ranted on twitter earlier if I lived in an ideal world my ideal fix would be to bake that patch into my OS image and re-deploy my estate gradually.</p>
+              <p>Obviously I realize not all systems are immutable (hell, most of the ones I work with aren't) or that most people don't even own the infra they're running in. In that case coding it to the infra/config code is the best you can do.</p>
+              </article>
           </div> <!-- ./blog-post -->
           <div id="disqus_thread"></div> <!-- disqus -->
         </div> <!-- ./blog-main col -->
@@ -75,6 +74,7 @@
               <li><a href="posts/2014/02/23/what-do-you-think-devops-is.html">What do you think DevOps is?</a></li>
               <li><a href="posts/2014/02/28/throw-your-personal-agenda-in-the-can.html">Throw your personal agenda in the can</a></li>
               <li><a href="posts/2014/06/17/zero-lines-of-code.html">Zero lines of code</a></li>
+              <li><a href="posts/2014/09/25/the-snowflake-mindset.html">The Snowflake Mindset</a></li>
             </ul>
           </div>
         </div> <!-- sidebar -->
