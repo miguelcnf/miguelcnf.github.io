@@ -23,9 +23,9 @@
     </script>
     <script type="text/javascript">
       var disqus_shortname = 'miguelcnfcom'; // required: replace example with your forum shortname
-      var disqus_identifier = 'the-snowflake-mindset';
-      var disqus_title = 'the-snowflake-mindset';
-      var disqus_url = 'http://miguelcnf.com/2014/09/25/the-snowflake-mindset.html';
+      var disqus_identifier = 'boxing-champ';
+      var disqus_title = 'boxing-champ';
+      var disqus_url = 'http://miguelcnf.com/2014/10/16/boxing-champ.html';
 
       (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -44,22 +44,19 @@
       <div class="row">
         <div class="col-sm-8 blog-main">
           <div class="blog-post">
-          <article>
-            <h2 class="blog-post-title">The Snowflake Mindset</h2>
-              <p>How common it (apparently) is.</p>
+            <article>
+              <h2 class="blog-post-title">Boxing Champ</h2>
+              <p>Don't take yourself too serious.</p>
               <hr>
-              <p>More often than not an event in the tech world will make everyone rush to patch a library or application due to a security flaw.</p>
-              <p>A couple of months ago we've seen the <a href="http://heartbleed.com/" target="_blank">ssl heartbleed</a> cause havoc around the internet and now we have <a href="http://seclists.org/oss-sec/2014/q3/650" target="_blank">bash shellshock</a> forcing everyone to update their live systems in a rush.</p>
-              <p>As usual this events bring lots of noise to the social networks, well to be honest as with all things tech, it bring <em>tweets</em> to twitter.</p>
-              <p>What surprised me this time was the way I've seen people bragging about how they had patched their systems. Most were showing off one liners executed with the parallel SSH tool of their choice which they had used to update their entire estate:</p>
-              <pre><code>ssh_task 'fix_bash' do command 'apt-get install bash --reinstall' end </code></pre>
-              <pre><code>ansible all -m apt -a 'update_cache=yes name=bash state=latest'</code></pre>
-              <p>Reading some of those all I could think was: <strong>snowflakes</strong>. Not the snowy fluffy ones but as in snowflake servers, the ones that aren't in a known coded state which you can rebuild in one go.</p>
-              <p>If I had to guess I'd say that the rise of tools (really good ones written by really smart people - don't get me wrong here) like ansible, capistrano and blender which allow you to easily remote execute a command across hundreds or thousands of servers in a programmatically way is directly related with this.</p>
-              <p>I'm guessing a lot of people didn't really fell for this mistake (call it pattern if you feel mistake is too strong) but I'd be willing to bet that because of the easiness of doing this changes a lot of systems were patched the good old way and are now in a snowflake state in which if they had to be re-build they wouldn't be idempotent.</p>
-              <p>Hopefully I'm wrong and all of those folks coded it to their infra/config code but as I ranted on twitter earlier if I lived in an ideal world my ideal fix would be to bake that patch into my OS image and re-deploy my estate gradually.</p>
-              <p>Obviously I realize not all systems are immutable (hell, most of the ones I work with aren't) or that most people don't even own the infra they're running in. In that case coding it to the infra/config code is the best you can do.</p>
-              </article>
+              <p>So, I saw this gif today in one of those meme's sites and I certainly wasn't expecting to have such a good laugh out of it.</p>
+              <hr>
+              <img src="images/boxing-champ.gif" alt="boxing-champ">
+              <hr>
+              <p>Then I realised it reminded me of some really nice advice someone once told me:</p>
+              <blockquote>
+                <em>Don't take yourself too serious. Always have fun doing whatever you're doing.</em>
+              </blockquote>
+            </article>
           </div> <!-- ./blog-post -->
           <div id="disqus_thread"></div> <!-- disqus -->
         </div> <!-- ./blog-main col -->
@@ -75,6 +72,7 @@
               <li><a href="posts/2014/02/28/throw-your-personal-agenda-in-the-can.html">Throw your personal agenda in the can</a></li>
               <li><a href="posts/2014/06/17/zero-lines-of-code.html">Zero lines of code</a></li>
               <li><a href="posts/2014/09/25/the-snowflake-mindset.html">The Snowflake Mindset</a></li>
+              <li><a href="posts/2014/10/16/boxing-champ.html">Boxing Champ</a></li>
             </ul>
           </div>
         </div> <!-- sidebar -->
