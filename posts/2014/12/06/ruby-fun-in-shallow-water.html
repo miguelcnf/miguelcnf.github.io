@@ -59,8 +59,8 @@
               <p>Let's dig in. Assume you're assigning values with the = operator like:</p>
 
               <pre><code>
-              [1] pry(main)> x = 'foo'
-              => "foo"
+[1] pry(main)> x = 'foo'
+=> "foo"
               </code></pre>
 
               <p>According to the docs this will assign the value <strong>'foo'</strong> to the variable <strong>x</strong>, which it does.</p>
@@ -68,14 +68,14 @@
               <p>Now let's see what happens if we assign the <strong>x</strong> variable to a new variable <strong>y</strong> and update it right after:</p>
 
               <pre><code>
-              [1] pry(main)> x = 'foo'
-              => "foo"
-              [2] pry(main)> y = x
-              => "foo"
-              [3] pry(main)> y = 'bar'
-              => "bar"
-              [4] pry(main)> x
-              => "foo"
+[1] pry(main)> x = 'foo'
+=> "foo"
+[2] pry(main)> y = x
+=> "foo"
+[3] pry(main)> y = 'bar'
+=> "bar"
+[4] pry(main)> x
+=> "foo"
               </code></pre>
 
               <p>The variable <strong>y</strong> gets assigned the value of the variable <strong>x</strong> and as it is a new object, it can be updated without changing the value of the original variable <strong>x</strong>.</p>
@@ -83,14 +83,14 @@
               <p>This works as expected for both Strings or Integers but what about Hashes? Let's try it:</p>
 
               <pre><code>
-              [1] pry(main)> x = { :a => 'foo' }
-              => {:a=>"foo"}
-              [2] pry(main)> y = x
-              => {:a=>"foo"}
-              [3] pry(main)> y[:a] = 'bar'
-              => "bar"
-              [4] pry(main)> x
-              => {:a=>"bar"}
+[1] pry(main)> x = { :a => 'foo' }
+=> {:a=>"foo"}
+[2] pry(main)> y = x
+=> {:a=>"foo"}
+[3] pry(main)> y[:a] = 'bar'
+=> "bar"
+[4] pry(main)> x
+=> {:a=>"bar"}
               </code></pre>
 
               <p>Ok that's not exactly what we were expecting.</p>
@@ -100,27 +100,27 @@
               <p>We can actually confirm it by checking the id of the objects created on both examples:</p>
 
               <pre><code>
-              [3] pry(main)> y = 'bar'
-              => "bar"
-              [4] pry(main)> x
-              => "foo"
-              [5] pry(main)> x.__id__
-              => 70146790902100
-              [6] pry(main)> y.__id__
-              => 70146790415460
+[3] pry(main)> y = 'bar'
+=> "bar"
+[4] pry(main)> x
+=> "foo"
+[5] pry(main)> x.__id__
+=> 70146790902100
+[6] pry(main)> y.__id__
+=> 70146790415460
               </code></pre>
 
               <p>And:</p>
 
               <pre><code>
-              [3] pry(main)> y[:a] = 'bar'
-              => "bar"
-              [4] pry(main)> x
-              => {:a=>"bar"}
-              [5] pry(main)> x.__id__
-              => 70361740329340
-              [6] pry(main)> y.__id__
-              => 70361740329340
+[3] pry(main)> y[:a] = 'bar'
+=> "bar"
+[4] pry(main)> x
+=> {:a=>"bar"}
+[5] pry(main)> x.__id__
+=> 70361740329340
+[6] pry(main)> y.__id__
+=> 70361740329340
               </code></pre>
 
               <p>As we can see <strong>y</strong> and <strong>x</strong> are in fact the same Hash object in the second snippet.</p>
@@ -130,18 +130,18 @@
               <p>In a nutshell they're the same, with the difference that the <strong>.clone</strong> method copies the frozen state of the original object. I didn't really need that so I went with the <strong>.dup</strong> method:</p>
 
               <pre><code>
-              [1] pry(main)> x = { :a => 'foo' }
-              => {:a=>"foo"}
-              [2] pry(main)> y = x.dup
-              => {:a=>"foo"}
-              [3] pry(main)> y[:a] = 'bar'
-              => "bar"
-              [4] pry(main)> x
-              => {:a=>"foo"}
-              [5] pry(main)> x.__id__
-              => 70235021806240
-              [6] pry(main)> y.__id__
-              => 70235021750880
+[1] pry(main)> x = { :a => 'foo' }
+=> {:a=>"foo"}
+[2] pry(main)> y = x.dup
+=> {:a=>"foo"}
+[3] pry(main)> y[:a] = 'bar'
+=> "bar"
+[4] pry(main)> x
+=> {:a=>"foo"}
+[5] pry(main)> x.__id__
+=> 70235021806240
+[6] pry(main)> y.__id__
+=> 70235021750880
               </code></pre>
 
               <p>Awesome! At this point I had a way of doing copies as value that worked on all the object types I needed.</p>
@@ -149,33 +149,33 @@
               <p>Then I had my <em>'WTF? Ruby is broken!'</em> moment:</p>
 
               <pre><code>
-              [1] pry(main)> x = {:a => 'foo', :b => [{ :z => 10, :w => 20 }]}
-              => {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
-              [2] pry(main)> y = x.dup
-              => {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
-              [3] pry(main)> y[:a] = 'bar'
-              => "bar"
-              [4] pry(main)> x
-              => {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
-              [5] pry(main)> y[:b][0][:z] = 30
-              => 30
-              [6] pry(main)> y
-              => {:a=>"bar", :b=>[{:z=>30, :w=>20}]}
-              [7] pry(main)> x
-              => {:a=>"foo", :b=>[{:z=>30, :w=>20}]}
+[1] pry(main)> x = {:a => 'foo', :b => [{ :z => 10, :w => 20 }]}
+=> {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
+[2] pry(main)> y = x.dup
+=> {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
+[3] pry(main)> y[:a] = 'bar'
+=> "bar"
+[4] pry(main)> x
+=> {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
+[5] pry(main)> y[:b][0][:z] = 30
+=> 30
+[6] pry(main)> y
+=> {:a=>"bar", :b=>[{:z=>30, :w=>20}]}
+[7] pry(main)> x
+=> {:a=>"foo", :b=>[{:z=>30, :w=>20}]}
               </code></pre>
 
               <p>What? Let's see:</p>
 
               <pre><code>
-              [8] pry(main)> y[:a].__id__
-              => 70191665153600
-              [9] pry(main)> x[:a].__id__
-              => 70191661721380
-              [10] pry(main)> y[:b].__id__
-              => 70191661721320
-              [11] pry(main)> x[:b].__id__
-              => 70191661721320
+[8] pry(main)> y[:a].__id__
+=> 70191665153600
+[9] pry(main)> x[:a].__id__
+=> 70191661721380
+[10] pry(main)> y[:b].__id__
+=> 70191661721320
+[11] pry(main)> x[:b].__id__
+=> 70191661721320
               </code></pre>
 
               <p>Why did <strong>:a</strong> was copied as value but <strong>:b</strong> as a reference?</p>
@@ -189,16 +189,16 @@
               <p>If we look at our example:</p>
 
               <pre><code>
-              x = {:a => 'foo', :b => [{ :z => 10, :w => 20 }]}
+x = {:a => 'foo', :b => [{ :z => 10, :w => 20 }]}
               </code></pre>
 
               <p>Here <strong>:a</strong> is an instance variable of a String object while <strong>:b</strong> actually references another instance Array object:</p>
 
               <pre><code>
-              [12] pry(main)> y[:b][0].__id__
-              => 70191661721340
-              [13] pry(main)> x[:b][0].__id__
-              => 70191661721340
+[12] pry(main)> y[:b][0].__id__
+=> 70191661721340
+[13] pry(main)> x[:b][0].__id__
+=> 70191661721340
               </code></pre>
 
               <p>This is what the docs meant by shallow copy.</p>
@@ -206,14 +206,14 @@
               <p>After a quick google search I endend up realising that I wasn't alone on this line of thought and that a common way of achieving a deep copy as value of an Hash object was:</p>
 
               <pre><code>
-              [1] pry(main)> x = {:a => 'foo', :b => [{ :z => 10, :w => 20 }]}
-              => {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
-              [2] pry(main)> y = Marshal.load(Marshal.dump(x))
-              => {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
-              [3] pry(main)> y[:b][0][:z] = 30
-              => 30
-              [4] pry(main)> x
-              => {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
+[1] pry(main)> x = {:a => 'foo', :b => [{ :z => 10, :w => 20 }]}
+=> {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
+[2] pry(main)> y = Marshal.load(Marshal.dump(x))
+=> {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
+[3] pry(main)> y[:b][0][:z] = 30
+=> 30
+[4] pry(main)> x
+=> {:a=>"foo", :b=>[{:z=>10, :w=>20}]}
               </code></pre>
 
               <p>This is using the Marshal object to dump the Hash object <strong>x</strong> into byte stream and then re-creating a new Hash object <strong>y</strong> from it.</p>
@@ -221,14 +221,14 @@
               <p>We now have two complete unique Hash instances to work with:</p>
 
               <pre><code>
-              [5] pry(main)> x.__id__
-              => 70234359976480
-              [6] pry(main)> y.__id__
-              => 70234359434480
-              [7] pry(main)> x[:b][0].__id__
-              => 70234359976600
-              [8] pry(main)> y[:b][0].__id__
-              => 70234359434200
+[5] pry(main)> x.__id__
+=> 70234359976480
+[6] pry(main)> y.__id__
+=> 70234359434480
+[7] pry(main)> x[:b][0].__id__
+=> 70234359976600
+[8] pry(main)> y[:b][0].__id__
+=> 70234359434200
               </code></pre>
 
               <p>I realise that this might seem like common sense to any Ruby gurus out there but I had some fun figuring it out.</p>
