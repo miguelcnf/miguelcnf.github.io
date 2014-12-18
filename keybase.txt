@@ -1,0 +1,66 @@
+==================================================================
+https://keybase.io/miguelcnf
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://miguelcnf.com
+  * I am miguelcnf (https://keybase.io/miguelcnf) on keybase.
+  * I have a public key with fingerprint DE51 BEDD F9AA 2BB8 325C  B6D0 ED05 4013 98CE 07D3
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "de51beddf9aa2bb8325cb6d0ed05401398ce07d3",
+            "host": "keybase.io",
+            "key_id": "ed05401398ce07d3",
+            "uid": "6dbf1b641f8d0ab1fffdfdf551c76c00",
+            "username": "miguelcnf"
+        },
+        "service": {
+            "hostname": "miguelcnf.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1418939075,
+    "expire_in": 157680000,
+    "prev": "f859bca1c9b5c11c10075f66e76299bd7ee90d19c26928bd68734edd304399ca",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v1.1.6
+Comment: https://keybase.io/crypto
+
+yMHlAnicO8LLzMDFmNncc6/9rdwyxtMHPpcyhEz2OlytlJSfUqlkVa2UnQqm0jLz
+0lOLCooy80qUrJRSUk0Nk1JTUtIsExONkpIsjI1Mk5PMUgxSUwxMTQwMjS0tklMN
+zFOMlXSUMvKLQTqAxiQlFqfqZeYDxYCc+MwUoCgW9aVgCbOUpDTDJDMTwzSLFIPE
+JMO0tLQUIDQ1NUw2N0s2MAApLE4tykvMTQWqzs1ML03NSc5LU6rVUQIKl2Ump4Ic
+DbIbXYlecn4uUHdBUX5JfnJ+DlAqo6SkwAqks6SyAKS0PDUpHmpIfFJmXgrQ50AN
+ZalFxZn5eUpWhkCVySWZIFMNTQwtLI0tDcxNdZRSKwoyi1LjM0EqTM3NLAyAAGRN
+ahnQyDQLU8uk5ETDZMsk02RDw2RDA6CeNDOzVHMzI0vLpBTz1FRLgxRDy2QjM0sj
+i6QUMwtzYxNg+BobmBhbWiYnKoG8VZiXr2RlDHRmYjrQyOLM9LzEktKiVKXaQwdi
+WBgYuRjYWJlAccfAxSkAi9Fpa9n/5zCreSo8zvp0KcjvldRh//CenbZbEo/NT67z
+q7/v/+j/JS7+8weC6hgSLepuSp52elFgdiDsjd6zY81JJywExUxqqy89zfqwmCnE
+Z+5V/nPSfqe3VPVbyNtIvWP3/LzywAnFV+Jr35ivW59xcGmh+NRYA5eWD11FGdOM
+NgTd7vbb7MiYlBGz7yVj5vHn10vaqpYXT4/cE6QQ+zoixHBOKfvFmYYxWl/sPwhp
+czEzNjcyG/XdjUvT+L3/lVN0v8VRlb+C16wf9gT+spE5d9Wan+3N/gtbPT/EnMpf
+2xbvcZH93GNB7VUzPJXUrX6/mnD7QGxR9OSZj8pDlidwzX/Jduf9uUKzTYrRcdtW
+6i0GAMB2Fug=
+=IGTW
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/miguelcnf
+
+==================================================================
+
