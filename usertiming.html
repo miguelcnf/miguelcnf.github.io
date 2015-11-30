@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Time All The Things!</title>
+    <script
+    <script type="text/javascript">
+      var firstClickFired = false,
+          firstClickMark,
+          firstClickResultDiv;
+
+      var handleFirstClick = function() {
+        // handle first click
+        if (!firstClickFired) {
+          firstClickFired = true;
+          window.performance.mark("firstClick");
+          firstClickMark = window.performance.getEntriesByName("firstClick");
+
+          firstClickResultDiv = document.getElementById("firstClickResult");
+          firstClickResultDiv.innerHTML = "Time to First Click: " + firstClickMark[0].startTime + " milliseconds";
+          firstClickResultDiv.style.display = "block";
+          document.getElementById("clickAnywhereLabel").style.display = "none";
+        }
+      }
+
+      window.addEventListener('click', handleFirstClick);
+    </script>
+  </head>
+  <body>
+    <div id="clickAnywhereLabel">Click anywhere...</div>
+    <div id="firstClickResult" style="display: none"></div>
+  </body>
+</html>
