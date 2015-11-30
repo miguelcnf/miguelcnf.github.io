@@ -2,11 +2,13 @@
 <html>
   <head>
     <title>User Time All The Things!</title>
-    <script
     <script type="text/javascript">
       var firstClickFired = false,
           firstClickMark,
           firstClickResultDiv;
+
+      // create dummy mark for webpagetest reports
+      window.performance.mark("webpagetestXmasMark");
 
       var handleFirstClick = function() {
         // handle first click
