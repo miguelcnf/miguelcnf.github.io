@@ -2,33 +2,127 @@
 <html>
   <head>
     <title>User Time All The Things!</title>
+    <style>
+      html, body, div {
+        text-align: center;
+        width: 100%;
+      }
+      table, th, td {
+        border: 1px solid black;
+        align: center;
+        margin: 0 auto;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
       var firstClickFired = false,
-          firstClickMark,
-          firstClickResultDiv;
+          interval;
 
-      // create dummy mark for webpagetest reports
-      window.performance.mark("webpagetestXmasMark");
+      var updateMarksAndMeasures = function () {
+        var marks =  window.performance.getEntriesByType("mark");
+        var measures =  window.performance.getEntriesByType("measure");
+
+        var markTable = "<tr><td>Name</td><td>Time (ms)</td></tr>";
+        var selectStartMark = "<option value='navigationStart'>Navigation Start</option>";
+        var selectEndMark = "<option value='currentTime'>Current Time</option>";
+        for (var mark in marks) {
+          markTable += "<tr><td>" + marks[mark].name + "</td><td>" + marks[mark].startTime + "</td></tr>";
+          // TODO: filter by name if I have time
+          selectStartMark += "<option value='" + marks[mark].name + "'>" + marks[mark].name + "</option>";
+          selectEndMark += "<option value='" + marks[mark].name + "'>" + marks[mark].name + "</option>";
+        }
+        $("#markTable").html(markTable);
+        $("#selectStartMark").html(selectStartMark);
+        $("#selectEndMark").html(selectEndMark);
+
+        var measureTable = "<tr><td>Name</td><td>Duration (ms)</td></tr>";
+        for (var measure in measures) {
+          measureTable += "<tr><td>" + measures[measure].name + "</td><td>" + measures[measure].duration + "</td></tr>";
+        }
+        $("#measureTable").html(measureTable);
+      }
 
       var handleFirstClick = function() {
         // handle first click
         if (!firstClickFired) {
           firstClickFired = true;
           window.performance.mark("firstClick");
-          firstClickMark = window.performance.getEntriesByName("firstClick");
+          var firstClickMark = window.performance.getEntriesByName("firstClick");
 
-          firstClickResultDiv = document.getElementById("firstClickResult");
-          firstClickResultDiv.innerHTML = "Time to First Click: " + firstClickMark[0].startTime + " milliseconds";
-          firstClickResultDiv.style.display = "block";
-          document.getElementById("clickAnywhereLabel").style.display = "none";
+          // clear webpagetest dummy mark
+          window.performance.clearMarks("sysadventXmasMark");
+          updateMarksAndMeasures();
+
+          alert("Time to First Click: " + firstClickMark[0].startTime + " milliseconds");
+
+          $("#clickAnywhereLabel").css("display", "none");
+          $("#onDemandContainer").css("display", "block");
         }
       }
 
+      var createPerfMark = function(markName) {
+        if (markName) {
+          window.performance.mark(markName);
+          updateMarksAndMeasures();
+
+          interval = window.setInterval(updateMarksAndMeasures, 5000);
+        }
+      }
+
+      var createPerfMeasure = function(measureName, startMark, endMark) {
+        if (measureName) {
+          var start = (startMark === 'navigationStart') ? undefined : startMark;
+          var end = (endMark === 'currentTime') ? undefined : endMark;
+
+          if (!start && end) {
+            alert("End mark cannot be specified without a start mark - you have that value as the mark time already!");
+            return;
+          }
+
+          window.performance.measure(measureName, start, end);
+          updateMarksAndMeasures();
+
+          interval = window.setInterval(updateMarksAndMeasures, 5000);
+        }
+      }
+
+      // create dummy mark for webpagetest reports
+      window.performance.mark("sysadventXmasMark");
+      updateMarksAndMeasures();
+
+      // handle click event
       window.addEventListener('click', handleFirstClick);
+
+      // capture and show marks/measures that have been created manually
+      interval = window.setInterval(updateMarksAndMeasures, 5000);
     </script>
   </head>
   <body>
     <div id="clickAnywhereLabel">Click anywhere...</div>
-    <div id="firstClickResult" style="display: none"></div>
+
+    <div id="onDemandContainer" style="display: none">
+      <p>
+        This demo allows you to create <a target="_blank" href="http://www.w3.org/TR/user-timing/">User Timing</a> marks and measures.
+        Read more about it at <a target="_blank" href="">sysadvent</a>.
+        Enjoy!
+      </p>
+      <div id= "markContainer">
+        <input type="text" id="newMark" onkeydown="if (event.keyCode == 13) $('#newMarkButton').click()">
+        <button type="button" id="newMarkButton" onclick="createPerfMark($('#newMark').val());">Create Mark!</button>
+      </div>
+      <p>Marks</p>
+      <table id="markTable"></table>
+      <p></p>
+      <div id= "measureContainer">
+        <input type="text" id="newMeasure" onkeydown="if (event.keyCode == 13) $('#newMeasureButton').click()">
+        <select id="selectStartMark" onchange="window.clearInterval(interval);"></select>
+        <select id="selectEndMark" onchange="window.clearInterval(interval);"></select>
+        <button type="button" id="newMeasureButton" onclick="createPerfMeasure($('#newMeasure').val(), $('#selectStartMark option:selected').val(), $('#selectEndMark option:selected').val());">
+          Create Measure!
+        </button>
+      </div>
+      <p>Measures</p>
+      <table id="measureTable"></table>
+    </div>
   </body>
 </html>
