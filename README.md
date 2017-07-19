@@ -1,1 +1,1 @@
-hosting miguelcnf.com blog.
+hosting miguelcnf.com
